@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glass {
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+@keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: scroll-left 20s linear infinite;
+  }
+
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-content {
+    display: inline-block;
+    padding-right: 100%;
+  }
+.marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+
+  <!-- Navbar -->
+  <!-- Responsive Navbar with Drawer -->
+<header x-data="{ open: false }" class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-400">TB</h1>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-6 text-sm">
+      <a href="#about" class="hover:text-blue-400 transition">About</a>
+      <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+      <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+      <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+      <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+    </nav>
+
+    <!-- Hamburger Menu -->
+    <button @click="open = !open" class="md:hidden text-white focus:outline-none">
+      <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div x-show="open" x-transition class="md:hidden bg-gray-900 border-t border-gray-700">
+    <nav class="flex flex-col space-y-3 p-4 text-sm">
+      <a @click="open = false" href="#about" class="hover:text-blue-400 transition">About</a>
+      <a @click="open = false" href="#skills" class="hover:text-blue-400 transition">Skills</a>
+      <a @click="open = false" href="#projects" class="hover:text-blue-400 transition">Projects</a>
+      <a @click="open = false" href="#experience" class="hover:text-blue-400 transition">Experience</a>
+      <a @click="open = false" href="#contact" class="hover:text-blue-400 transition">Contact</a>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Hero Section -->
+ <!-- ✅ Hero Section with Photo -->
+<section class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-4 pt-18 max-w-6xl mx-auto">
+  <!-- Text -->
+  <div class="md:w-1/2 text-center md:text-left">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+      Hi, I'm <span class="text-blue-400">Trilochan Behera</span>
+    </h2>
+    <p class="text-lg md:text-xl text-gray-300 mb-6">
+      MCA Student • Developer • Tech Enthusiast
+    </p>
+    <a href="#projects" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-full font-semibold text-white transition">
+      View Projects
+    </a>
+  </div>
+
+  <!-- Photo -->
+  <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+    <img src="images/profile.jpg" alt="Your Name" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg border-4 border-blue-400" />
+  </div>
+</section>
+
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-950">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h3 class="text-3xl font-semibold mb-4 text-blue-400 text-center mb-10">About Me</h3>
+      <p class="text-gray-300 text-lg leading-relaxed">
+        I’m a B.Tech Computer Science student passionate about solving real-world problems using software. I love building interactive web applications, exploring backend systems, and learning new tech tools. I'm actively working on personal and team projects, aiming to grow as a full-stack developer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <!-- Skills Section with Marquee Animation -->
+<!-- Skills Section with Seamless Scrolling Marquee -->
+<section id="skills" class="py-20 bg-gray-950 px-4">
+  <h3 class="text-3xl font-semibold text-blue-400 text-center mb-10">Skills</h3>
+
+  <div class="marquee-wrapper">
+    <div class="marquee-track space-x-6 text-lg py-2">
+      <!-- Repeat the same set twice for infinite loop -->
+      <div class="flex space-x-6">
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">HTML</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">CSS</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">JavaScript</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Python</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">C++</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">React</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Node.js</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MySQL</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Git</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Tailwind CSS</div>
+      </div>
+
+      <div class="flex space-x-6">
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">HTML</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">CSS</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">JavaScript</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Python</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">C++</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">React</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Node.js</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MySQL</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Git</div>
+        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Tailwind CSS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-gray-950">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-blue-400 mb-10 text-center">Projects</h3>
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project Card -->
+        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
+          <h4 class="text-2xl font-bold mb-2 text-white">Portfolio Website</h4>
+          <p class="text-gray-300 mb-4">A personal portfolio built with HTML, Tailwind CSS, and JavaScript showcasing my projects and skills.</p>
+          <a href="#" class="text-blue-400 hover:underline">View on GitHub</a>
+        </div>
+        <!-- Project Card -->
+        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
+          <h4 class="text-2xl font-bold mb-2 text-white">Weather App</h4>
+          <p class="text-gray-300 mb-4">A simple weather forecasting web app using OpenWeather API and React.</p>
+          <a href="#" class="text-blue-400 hover:underline">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-semibold text-blue-400 mb-10 text-center">Experience</h3>
+      <div class="space-y-8 max-w-3xl mx-auto">
+        <div>
+          <h4 class="text-xl font-bold">Intern – ABC Tech</h4>
+          <p class="text-sm text-gray-400">June 2025 – August 2025</p>
+          <p class="mt-2 text-gray-300">Worked on building REST APIs and dynamic frontend interfaces using React and Express.js.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-950">
+    <div class="container mx-auto px-4 max-w-3xl text-center">
+      <h3 class="text-3xl font-semibold text-blue-400 mb-6">Let's Connect</h3>
+      <p class="text-gray-300 mb-8">I’d love to hear from you. Whether it’s a project, internship, or just a hello — drop me a message!</p>
+      <ul class="space-y-3">
+        <li>Email: <a href="trilochantrilo600@gmail.com" class="text-blue-400 hover:underline">trilochantrilo600@gmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/trilochan-behera-9b3a85322" class="text-blue-400 hover:underline" target="_blank">Trilochan Behera</a></li>
+        <li>GitHub: <a href="https://github.com/Trilochan-B" class="text-blue-400 hover:underline" target="_blank">github.com/Trilochan-B</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-6 text-gray-400">
+    <p>&copy; 2025 Trilochan Behera. Built with HTML and Tailwind CSS.</p>
+  </footer>
+
+</body>
+</html>
