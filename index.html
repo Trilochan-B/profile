@@ -3,248 +3,193 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name | Portfolio</title>
+  <title>Trilochan Behera | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/alpinejs" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Outfit', sans-serif;
+      scroll-behavior: smooth;
     }
 
     .glass {
-      backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(16px);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+      transition: all 0.3s ease-in-out;
     }
-@keyframes scroll-left {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
 
-  .animate-marquee {
-    animation: scroll-left 20s linear infinite;
-  }
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
 
-  .marquee-container {
-    overflow: hidden;
-    white-space: nowrap;
-  }
+    .marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
 
-  .marquee-content {
-    display: inline-block;
-    padding-right: 100%;
-  }
-.marquee-wrapper {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee-scroll 30s linear infinite;
-  }
-
-  @keyframes marquee-scroll {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
 
   <!-- Navbar -->
-  <!-- Responsive Navbar with Drawer -->
-<header x-data="{ open: false }" class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur shadow-md">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-400">TB</h1>
+  <header x-data="{ open: false }" class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-400">TB</h1>
+      <nav class="hidden md:flex space-x-6 text-sm">
+        <a href="#about" class="hover:text-blue-400 transition">About</a>
+        <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+        <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+        <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+      </nav>
+      <button @click="open = !open" class="md:hidden text-white focus:outline-none">
+        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div x-show="open" x-transition class="md:hidden bg-gray-900 border-t border-gray-700">
+      <nav class="flex flex-col space-y-3 p-4 text-sm">
+        <a @click="open = false" href="#about" class="hover:text-blue-400 transition">About</a>
+        <a @click="open = false" href="#skills" class="hover:text-blue-400 transition">Skills</a>
+        <a @click="open = false" href="#projects" class="hover:text-blue-400 transition">Projects</a>
+        <a @click="open = false" href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        <a @click="open = false" href="#contact" class="hover:text-blue-400 transition">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex space-x-6 text-sm">
-      <a href="#about" class="hover:text-blue-400 transition">About</a>
-      <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
-      <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-      <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
-      <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
-    </nav>
+  <!-- Hero -->
+  <section class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-4 pt-20 max-w-7xl mx-auto relative overflow-hidden">
+    <div class="absolute -top-20 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-3xl z-0"></div>
+    <div class="md:w-1/2 text-center md:text-left relative z-10" data-aos="fade-up">
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+        Hi, I'm <span class="text-blue-400">Trilochan Behera</span>
+      </h2>
+      <p class="text-lg md:text-xl text-gray-300 mb-6">
+        MCA Student • Developer • Tech Enthusiast
+      </p>
+      <a href="#projects" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-full font-semibold text-white transition duration-300 shadow-lg">
+        View Projects
+      </a>
+    </div>
+    <div class="md:w-1/2 flex justify-center mb-8 md:mb-0 relative z-10" data-aos="zoom-in">
+      <img src="images/profile.jpg" alt="Trilochan Behera" class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-4 border-blue-400 shadow-xl" />
+    </div>
+  </section>
 
-    <!-- Hamburger Menu -->
-    <button @click="open = !open" class="md:hidden text-white focus:outline-none">
-      <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Mobile Drawer -->
-  <div x-show="open" x-transition class="md:hidden bg-gray-900 border-t border-gray-700">
-    <nav class="flex flex-col space-y-3 p-4 text-sm">
-      <a @click="open = false" href="#about" class="hover:text-blue-400 transition">About</a>
-      <a @click="open = false" href="#skills" class="hover:text-blue-400 transition">Skills</a>
-      <a @click="open = false" href="#projects" class="hover:text-blue-400 transition">Projects</a>
-      <a @click="open = false" href="#experience" class="hover:text-blue-400 transition">Experience</a>
-      <a @click="open = false" href="#contact" class="hover:text-blue-400 transition">Contact</a>
-    </nav>
-  </div>
-</header>
-
-
-  <!-- Hero Section -->
- <!-- ✅ Hero Section with Photo -->
-<section class="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-4 pt-18 max-w-6xl mx-auto">
-  <!-- Text -->
-  <div class="md:w-1/2 text-center md:text-left">
-    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-      Hi, I'm <span class="text-blue-400">Trilochan Behera</span>
-    </h2>
-    <p class="text-lg md:text-xl text-gray-300 mb-6">
-      MCA Student • Developer • Tech Enthusiast
-    </p>
-    <a href="#projects" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-full font-semibold text-white transition">
-      View Projects
-    </a>
-  </div>
-
-  <!-- Photo -->
-  <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
-    <img src="images/profile.jpg" alt="Your Name" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg border-4 border-blue-400" />
-  </div>
-</section>
-
-
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-gray-950">
-    <div class="container mx-auto px-4 max-w-3xl">
-      <h3 class="text-3xl font-semibold mb-4 text-blue-400 text-center mb-10">About Me</h3>
+  <!-- About -->
+  <section id="about" class="py-20 bg-gray-950" data-aos="fade-up">
+    <div class="container mx-auto px-4 max-w-3xl text-center">
+      <h3 class="text-3xl font-semibold mb-10 text-blue-400">About Me</h3>
       <p class="text-gray-300 text-lg leading-relaxed">
-        I’m a MCA student passionate about solving real-world problems using software. Experienced in designing and developing machine learning models using
-TensorFlow and scikit-learn. Skilled in data preprocessing, model training, and performance tuning. Proficient in backend development using Django,
-with a focus on building RESTful APIs and integrating with relational databases. Strong ability to create efficient, scalable, and well-structured
-solutions for real-world applications.
-
+        I’m a MCA student passionate about solving real-world problems using software. Experienced in designing and developing machine learning models using TensorFlow and scikit-learn. Skilled in data preprocessing, model training, and performance tuning. Proficient in backend development using Django, with a focus on building RESTful APIs and integrating with relational databases. Strong ability to create efficient, scalable, and well-structured solutions for real-world applications.
       </p>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <!-- Skills Section with Marquee Animation -->
-<!-- Skills Section with Seamless Scrolling Marquee -->
-<section id="skills" class="py-20 bg-gray-950 px-4">
-  <h3 class="text-3xl font-semibold text-blue-400 text-center mb-10">Skills</h3>
-
-  <div class="marquee-wrapper">
-    <div class="marquee-track space-x-6 text-lg py-2">
-      <!-- Repeat the same set twice for infinite loop -->
-      <div class="flex space-x-6">
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">HTML</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">CSS</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Python</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Django</div>
-	<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Flask</div>
-<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">RestAPI</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Tensorflow</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Scikit-learn</div>
-<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">NLP</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MongoDb</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MySQL</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Git</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Docker</div>
-
-      </div>
-
-      <div class="flex space-x-6">
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">HTML</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">CSS</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Python</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Django</div>
-	<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Flask</div>
-<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">RestAPI</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Tensorflow</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Scikit-learn</div>
-<div class="bg-gray-800 px-6 py-3 rounded-lg shadow">NLP</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MongoDb</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">MySQL</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Git</div>
-        <div class="bg-gray-800 px-6 py-3 rounded-lg shadow">Docker</div>
+  <!-- Skills -->
+  <section id="skills" class="py-20 bg-gray-950 px-4" data-aos="fade-up">
+    <h3 class="text-3xl font-semibold text-blue-400 text-center mb-10">Skills</h3>
+    <div class="marquee-wrapper">
+      <div class="marquee-track space-x-6 text-sm py-2">
+        <div class="flex space-x-4">
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">HTML</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">CSS</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Python</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Django</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Flask</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">REST API</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">TensorFlow</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Scikit-learn</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">NLP</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">MongoDB</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">MySQL</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Git</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Docker</div>
+        </div>
+		<div class="flex space-x-4">
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">HTML</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">CSS</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Python</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Django</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Flask</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">REST API</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">TensorFlow</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Scikit-learn</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">NLP</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">MongoDB</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">MySQL</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Git</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Docker</div>
+        </div>
+<div class="flex space-x-4">
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">HTML</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">CSS</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Python</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Django</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">Flask</div>
+          <div class="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-full border border-blue-400 font-semibold shadow">REST API</div>
+</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 bg-gray-950">
+  <!-- Projects -->
+  <section id="projects" class="py-20 bg-gray-950" data-aos="fade-up">
     <div class="container mx-auto px-4">
       <h3 class="text-3xl font-semibold text-blue-400 mb-10 text-center">Projects</h3>
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Project Card -->
-        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
+        <!-- Repeat project card structure -->
+        <div class="glass rounded-xl p-6 hover:shadow-blue-500/40 hover:scale-[1.02] transition-all duration-300">
           <h4 class="text-2xl font-bold mb-2 text-white">Dr. Crop</h4>
-          <p class="text-gray-300 mb-4">Developed an AI-based smart farming system integrating Random
-Forest Classifier for crop prediction using soil parameters and
-Convolutional Neural Networks (CNN) for plant disease detection
-through leaf image analysis, enhancing agricultural decision-making
-and crop health monitoring.</p>
+          <p class="text-gray-300 mb-4">AI farming system integrating crop prediction and plant disease detection using ML and CNN.</p>
           <a href="https://github.com/Trilochan-B/Dr.Crop" class="text-blue-400 hover:underline">View on GitHub</a>
         </div>
-        <!-- Project Card -->
-        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
+        <div class="glass rounded-xl p-6 hover:shadow-blue-500/40 hover:scale-[1.02] transition-all duration-300">
           <h4 class="text-2xl font-bold mb-2 text-white">BOOKVERSE</h4>
-          <p class="text-gray-300 mb-4">Designed and developed a book recommendation system by creating
-custom feature datasets for each book and implementing K-Nearest
-Neighbors (KNN) algorithm for personalized suggestions; built a fullstack web application to deliver an interactive user experience.
-</p>
+          <p class="text-gray-300 mb-4">Book recommendation system using KNN and custom feature datasets in a full-stack web app.</p>
           <a href="https://github.com/Trilochan-B/Book_Recommendation" class="text-blue-400 hover:underline">View on GitHub</a>
         </div>
-		<!-- Project Card -->
-        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
+        <div class="glass rounded-xl p-6 hover:shadow-blue-500/40 hover:scale-[1.02] transition-all duration-300">
           <h4 class="text-2xl font-bold mb-2 text-white">DOGBREAD</h4>
-          <p class="text-gray-300 mb-4">Implemented a Convolutional Neural Network (CNN) for Image
-Classification, Image Preprocessing and Augmentation for Model
-Optimization Streamlit for frontend
-.</p>
-          <a href="https://github.com/Trilochan-B/DogBreed               " class="text-blue-400 hover:underline">View on GitHub</a>
+          <p class="text-gray-300 mb-4">CNN-based dog breed classifier with image preprocessing and Streamlit frontend.</p>
+          <a href="https://github.com/Trilochan-B/DogBreed" class="text-blue-400 hover:underline">View on GitHub</a>
         </div>
-<!-- Project Card -->
-        <div class="glass rounded-xl p-6 shadow-lg hover:shadow-2xl transition border border-white/10">
-          <h4 class="text-2xl font-bold mb-2 text-white">YouTube comment analyzer</h4>
-          <p class="text-gray-300 mb-4">Designed a web application that analyzes YouTube video comments using natural language processing (NLP) techniques. The application takes a video URL as input, extracts user comments, and classifies them into positive, negative, or neutral categories using sentiment analysis. Integrated real-time data fetching, comment parsing, and machine learning models to deliver accurate sentiment insights, enhancing user engagement and content evaluation.</p>
+        <div class="glass rounded-xl p-6 hover:shadow-blue-500/40 hover:scale-[1.02] transition-all duration-300">
+          <h4 class="text-2xl font-bold mb-2 text-white">YouTube Comment Analyzer</h4>
+          <p class="text-gray-300 mb-4">NLP-based sentiment analyzer fetching real-time YouTube comments and classifying sentiment.</p>
           <a href="https://github.com/Trilochan-B/YouTubeCommentsAnalysis" class="text-blue-400 hover:underline">View on GitHub</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section 
-  <section id="experience" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
-    <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-semibold text-blue-400 mb-10 text-center">Experience</h3>
-      <div class="space-y-8 max-w-3xl mx-auto">
-        <div>
-          <h4 class="text-xl font-bold">Intern – ABC Tech</h4>
-          <p class="text-sm text-gray-400">June 2025 – August 2025</p>
-          <p class="mt-2 text-gray-300">Worked on building REST APIs and dynamic frontend interfaces using React and Express.js.</p>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-gray-950">
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-950" data-aos="fade-up">
     <div class="container mx-auto px-4 max-w-3xl text-center">
       <h3 class="text-3xl font-semibold text-blue-400 mb-6">Let's Connect</h3>
       <p class="text-gray-300 mb-8">I’d love to hear from you. Whether it’s a project, internship, or just a hello — drop me a message!</p>
       <ul class="space-y-3">
-        <li>Email: <a href="trilochantrilo600@gmail.com" class="text-blue-400 hover:underline">trilochantrilo600@gmail.com</a></li>
+        <li>Email: <a href="mailto:trilochantrilo600@gmail.com" class="text-blue-400 hover:underline">trilochantrilo600@gmail.com</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/in/trilochan-behera-9b3a85322" class="text-blue-400 hover:underline" target="_blank">Trilochan Behera</a></li>
         <li>GitHub: <a href="https://github.com/Trilochan-B" class="text-blue-400 hover:underline" target="_blank">github.com/Trilochan-B</a></li>
       </ul>
@@ -256,5 +201,13 @@ Optimization Streamlit for frontend
     <p>&copy; 2025 Trilochan Behera. Built with HTML and Tailwind CSS.</p>
   </footer>
 
+  <!-- AOS Init -->
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: 'ease-in-out',
+    });
+  </script>
 </body>
 </html>
